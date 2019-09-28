@@ -1,16 +1,22 @@
 import RPi.GPIO as GPIO
 from time import sleep
+import signal
+import sys
 
-
-RED = 7
-YLW = 11
-GRN = 12
-
-
+RED, YLW, GRN = 7, 11, 12
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(RED, GPIO.OUT)
 GPIO.setup(YLW, GPIO.OUT)
 GPIO.setup(GRN, GPIO.OUT)
+
+
+def close(signal, frame):
+    print("\nTurning OFF PIR Sensor\n")
+    GPIO.cleanup()
+    sys.exit(0)
+
+
+signal.signal(signal.SIGINT, close)
 
 for i in range(3):
     GPIO.output(RED, True)
