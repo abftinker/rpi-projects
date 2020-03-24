@@ -13,7 +13,7 @@ GPIO.setup(LED, GPIO.OUT)  # LED output pin
 
 
 def close(signal, frame):
-    print("\nExiting PiTraffic\n")
+    print("\nTurning OFF PIR Sensor\n")
     GPIO.cleanup()
     sys.exit(0)
 
